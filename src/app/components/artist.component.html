@@ -1,0 +1,42 @@
+<!--<div *ngIf="artist">
+    <header class"artist-header">
+        <div *ngIf="artist.images">
+            <img class="artist-thumb img-circle" src="{{artist.images[0].url}}" alt="">
+        </div>
+    </header>
+</div>-->
+
+<!--<p *ngIf="artist.genres; else noGenres">
+    <div *ngFor="let genre of artist.genres">{{genre}}</div>
+</p>-->
+
+
+<div *ngIf="artist">
+    <header class="artist-header">
+        <div *ngIf="artist.images">
+            <img class="artist-thumb img-circle" src="{{artist.images[0].url}}" alt="">
+        </div>
+        <h1>{{artist.name}}</h1>
+        <div *ngIf="artist.genres" fxLayoutGap="8px" fxLayout="row">
+            <strong>Genres:</strong>
+            <div fxLayoutGap="5px" fxLayoutWrap>
+                <span fxLayoutAlign="center center" class="label label-success" *ngFor="let genre of artist.genres">{{genre}}</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="artist-albums">
+        <div fxLayout="row" fxLayoutWrap>
+            <div *ngFor="let album of albums">
+                <div class="album well"  fxLayoutAlign="center">
+                    <div *ngIf="album.images.length > 0" fxLayout="column">
+                        <img class="album-thumb" src="{{album.images[0].url}}" alt="">
+                        <a class="btn btn-primary btn-block" routerLink="/album/{{album.id}}">Album Info</a>
+                        <h4 class="album-name">{{album.name}}</h4>
+                        <!--<h5>{{albumPulled.release_date}}</h5>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

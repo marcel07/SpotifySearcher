@@ -1,0 +1,24 @@
+<h1>Need Music?</h1>
+<p class="lead">Just use the search bar and find what you need</p>
+<form>
+    <input type="text" class="form-control" (keyup)="searchMusic()" name="searchStr" placeholder="Search Spotify for..." [(ngModel)]="searchStr">
+</form>
+
+<div *ngIf="searchResult" fxLayout="column">
+    <div *ngFor="let item of searchResult">
+        <div fxLayout="row">
+            <div fxFlex="stretch">
+                <div class="search-res well">
+                    <h5><a routerLink="artist/{{item.id}}">{{item.name}}</a></h5>
+                    <strong *ngIf="item.genres.length === 0"><i>No Genres Listed</i></strong>
+                    <div *ngIf="item.genres.length > 0" fxLayoutGap="8px" fxLayout="row">
+                        <strong>Genres:</strong>
+                        <div fxLayoutGap="5px" fxLayoutWrap>
+                            <span fxLayoutAlign="center center" class="label label-success" *ngFor="let genre of item.genres">{{genre}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
